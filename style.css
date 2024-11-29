@@ -1,0 +1,175 @@
+.game-board-main{
+
+    position: fixed;
+    left: 100px;
+    top: 100px;    
+    height: 300px;
+    width: 300px;
+
+
+}
+
+.game-board{
+
+    position: absolute;
+    height: 300px;
+    left: 100px;
+    width: 10px;
+    background-color: black;
+
+}
+
+
+.game-board2{
+
+    position: absolute;
+    left: 200px;
+    height: 300px;
+    width: 10px;
+    background-color: black;
+
+
+}
+
+
+.game-board4{
+
+    position: absolute;
+    height: 10px;
+    width: 300px;
+    top: 100px;
+    background-color: black;
+
+
+}
+
+.game-board5{
+
+    position: absolute;
+    height: 10px;
+    top: 200px;
+    width: 300px;
+    background-color: black;
+
+
+
+}
+
+.play-div{
+
+    height: 90px;
+    width: 90px;
+
+}
+
+.play-div:hover{
+
+    background-color: black;
+
+
+}
+
+
+.play-div1{
+
+    position: fixed;
+        left: 110px;
+        top: 110px;
+    z-index: 100;
+
+}
+
+
+
+
+
+.play-div2{
+
+    position: fixed;
+    left: 210px;
+    top: 110px;
+    z-index: 100;
+
+}
+
+
+
+.play-div3{
+
+    position: fixed;
+    left: 310px;
+    top: 110px;
+    z-index: 100;
+
+
+}
+
+
+
+.play-div4{
+
+    position: fixed;
+    left: 210px;
+    top: 210px;
+    z-index: 100;
+
+}
+
+.play-div5{
+
+
+    
+        position: fixed;
+        left: 110px;
+        top: 210px;
+        z-index: 100;
+
+    
+    
+    
+}
+
+.play-div6{
+
+    position: fixed;
+    left: 310px;
+    top: 210px;
+    z-index: 100;
+
+
+}
+
+.play-div7{
+
+    position: fixed;
+    left: 110px;
+    top: 310px;
+    z-index: 100;
+
+}
+
+
+.play-div8{
+
+    position: fixed;
+    left: 310px;
+    top: 310px;
+    z-index: 100;
+
+
+}
+
+.play-div9{
+
+    position: fixed;
+    left: 210px;
+    top: 310px;
+    z-index: 100;
+
+}
+
+
+
+
+
+
