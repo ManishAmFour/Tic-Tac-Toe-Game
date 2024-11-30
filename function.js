@@ -8,9 +8,6 @@ GameLogic();
 
 function GameLogic(){
 
-
-
-
 document.querySelector(`.option-selector`).addEventListener(`click`,()=>{
 
 document.querySelector(`.option-display`).innerHTML = `<button class="first-one" >${PlayerMove[0]}</button><button class="second-one">${PlayerMove[1]}</button>`
@@ -23,7 +20,6 @@ document.querySelector(`.first-one`).addEventListener(`click`,()=>{
     ];
 
     let InputPlayer;
-    let CompMove;
 
     InputPlayer = `X`;
 
@@ -38,9 +34,11 @@ document.querySelector(`.first-one`).addEventListener(`click`,()=>{
 
         button.addEventListener(`click`,()=>{
 
-            let PlayerId = button.dataset.playerId
+            let PlayerId = button.dataset.playerId;
 
-            button.innerHTML = `<div class="${PlayerId}" >X</div>`
+            document.querySelector(`.${PlayerId}`).innerHTML = `X`;
+
+            reevulation();
 
 
             CompArray.forEach((element,index)=>{
@@ -55,61 +53,26 @@ document.querySelector(`.first-one`).addEventListener(`click`,()=>{
 
             })
 
-            console.log(CompArray)
-            let CompValue = Math.floor(Math.random() * CompArray.length)
-            let CompPick = CompArray[CompValue]    
 
-            console.log(CompPick)
+            let CompValue = Math.floor(Math.random() * CompArray.length)
+            let CompPick = CompArray[CompValue]  
+
+            document.querySelector(`.${CompPick}`).innerHTML = `O`;
+
+            CompArray.forEach((element,index)=>{
+
+                if(CompPick === element){
+
+                    CompArray.splice(index,1)
+
+
+                }
+
+
+
+            })
             
 
-        /*if(RandomMove >= 0 && RandomMove < 1/TotalMoves){
-
-            CheckingTheArray(`.play-div1`)
-
-
-        }else if(RandomMove >= 1/TotalMoves && RandomMove < 2/TotalMoves){
-
-            CheckingTheArray(`.play-div2`)
-
-
-        }else if(RandomMove >= 2/TotalMoves && RandomMove < 3/TotalMoves){
-
-            CheckingTheArray(`.play-div3`)
-
-
-        }else if(RandomMove >= 3/TotalMoves && RandomMove < 4/TotalMoves){
-
-            CheckingTheArray(`.play-div4`)
-
-
-        }else if(RandomMove >= 4/TotalMoves && RandomMove < 5/TotalMoves){
-
-            CheckingTheArray(`.play-div5`)
-
-
-        }else if(RandomMove >= 5/TotalMoves && RandomMove < 6/TotalMoves){
-
-            CheckingTheArray(`.play-div6`)
-
-
-        }else if(RandomMove >= 6/TotalMoves && RandomMove < 7/TotalMoves){
-
-            CheckingTheArray(`.play-div7`)
-
-
-        }else if(RandomMove >= 7/TotalMoves && RandomMove < 8/TotalMoves){
-
-
-            CheckingTheArray(`.play-div8`)
-
-
-        }else if(RandomMove >= 8/TotalMoves && RandomMove < 9/TotalMoves){
-         
-            CheckingTheArray(`.play-div9`)
-
-        }*/
-
-    
     })
 
 
@@ -122,24 +85,62 @@ document.querySelector(`.first-one`).addEventListener(`click`,()=>{
 })
 
 
-function CheckingTheArray(element){
+function reevulation(){
 
 
-    CompArray.forEach((otherElements)=>{
+    let TheValues = []
     
-    if(element !== otherElements){
-
-        CompArray.push(element)
-
-    }
-    
-    
-    
-    })
+document.querySelectorAll(`.play-div`).forEach((element,index)=>{
 
 
-    
-    }
+TheValues.push(element.innerHTML)
+
+
+
+
+})
+
+console.log(TheValues)
+
+if(TheValues[0] === TheValues[1] && TheValues[1] === TheValues[2] && TheValues[0] === `X`){
+
+    alert(`You Won`) 
+    GameLogic();
+
+
+}else if (TheValues[3] === TheValues[4] && TheValues[4] === TheValues[5] && TheValues[3] === `X`){
+
+
+    alert(`You Won`)
+
+
+}else if(TheValues[6] === TheValues[7] && TheValues[7] === TheValues[8] && TheValues[6] === `X`){
+
+    alert(`You Won`)
+
+
+
+}
+
+
+
+
+
+/*
+let firstBlock = document.querySelector(`.play-div1`);
+let secondBlock = document.querySelector(`.playdiv2`);
+let thirdBlock = document.querySelector(`.playdiv3`);
+let fourthBlock = document.querySelector(`.playdiv4`);
+let fifthBlock = document.querySelector(`.playdiv5`);
+let sixthBlock = document.querySelector(`.playdiv6`);
+let seventhBlock = document.querySelector(`.playdiv7`);
+let eightBlock = document.querySelector(`.playdiv8`);
+let ninthBlock = document.querySelector(`.playdiv9`);
+*/
+
+
+
+}
 
 
     
