@@ -9,19 +9,21 @@ let IsTrue = false;
 
 let XWins = 0;
 
-
 let OWins = 0;
 
-GameLogic();
-
-function GameLogic(){
-
-
 document.querySelector(`.Restart-Button`).addEventListener(`click`,()=>{
+
+    Restart();
+
+})
+
+
+function Restart(){
 
 
     document.querySelector(`.First-player-name`).value = ``;
     document.querySelector(`.Second-player-name`).value = ``;
+
 
     document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
@@ -31,21 +33,60 @@ document.querySelector(`.Restart-Button`).addEventListener(`click`,()=>{
 
     })
 
+
     XWins = 0;
     OWins = 0;
+
+
+    document.querySelector(`.score-board-X`).innerText = ``;
+    document.querySelector(`.score-board-O`).innerText = ``;
+
+    document.querySelector(`.initiation-button`).classList.remove(`display-none`)
+
+
+
+
+
+}
+
+document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
+
+    if(document.querySelector(`.First-player-name`).value !== `` && document.querySelector(`.Second-player-name`).value !== ``){
+
+        let FirstPlayer = document.querySelector(`.First-player-name`).value;
+        let SecondPlayer = document.querySelector(`.Second-player-name`).value;
+
+    GameLogic();
+
+    document.querySelector(`.register-form`).classList.add(`display-none`);
+    document.querySelector(`.score-board`).classList.add(`display-block`);
+    document.querySelector(`.game-board-main`).classList.add(`display-block`);
+    document.querySelectorAll(`.play-div`).forEach((Div)=>{
+
+        Div.classList.add(`display-block`)
+
+
+    })
+
+
+
+    }else{
+
+        alert(`please Fill The entries first`)
+
+    }
+    
 
 
 })
 
 
-document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
+function GameLogic(){
 
     if(document.querySelector(`.First-player-name`).value !== `` && document.querySelector(`.Second-player-name`).value !== ``){  
 
-
     let CompArray = ["play-div1","play-div2","play-div3","play-div4","play-div5","play-div6","play-div7",
-        "play-div8","play-div9"
-    ];
+        "play-div8","play-div9"];
 
     document.querySelectorAll(`.play-div`).forEach((button)=>{
 
@@ -57,6 +98,7 @@ document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
             if(InputPlayer === `X`) {
 
                 if(document.querySelector(`.${PlayerId}`).innerHTML === ``){
+
             document.querySelector(`.${PlayerId}`).innerHTML = InputPlayer;
 
             reevulation(InputPlayer);
@@ -108,6 +150,7 @@ document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
             if(IsTrue === false){
 
             InputPlayer = `X`
+
             }else if(IsTrue === true) {
 
                 IsTrue = false
@@ -128,22 +171,17 @@ document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
 
 })
 
-}else{
-
-    alert(`please Fill The name first`)
-
-
 }
 
 
 
 
-})
 
 
+}
     
 
-}
+
 
 
 function reevulation(InputPlayer){
@@ -172,6 +210,8 @@ function reevulation(InputPlayer){
 
         alert(`You Won`);
         IsTrue= true;
+        XWins += 1;
+        document.querySelector(`.score-board-X`).innerText = XWins;
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
             EmptyDiv.innerHTML = ``;
@@ -180,9 +220,7 @@ function reevulation(InputPlayer){
 
         })
 
-        XWins += 1;
-        document.querySelector(`.score-board-X`).innerText = XWins;
-
+        
         InputPlayer = `X`
         
     }else if (TheValues[3] === TheValues[4] && TheValues[4] === TheValues[5] && TheValues[3] === `X`){

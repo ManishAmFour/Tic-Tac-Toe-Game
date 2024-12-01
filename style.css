@@ -5,9 +5,44 @@
     top: 100px;    
     height: 300px;
     width: 300px;
+    display: none;
 
 
 }
+
+.play-div{
+
+    display: none;
+
+}
+
+.display-block{
+
+    display: block;
+
+
+}
+
+.register-form{
+
+display: inline-block;
+
+}
+
+.Restart-Button{
+
+    display: none;
+
+
+}
+
+.score-board{
+
+    display: none;
+
+
+}
+
 
 .game-board{
 
@@ -70,6 +105,11 @@
 
 }
 
+.display-none{
+
+    display: none;
+
+}
 
 
 
