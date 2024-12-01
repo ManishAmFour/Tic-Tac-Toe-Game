@@ -3,59 +3,94 @@ let PlayerMove = [`X`,`O`]
 
 let GameBoard = [];
 
-
-GameLogic();
+let InputPlayer = `X`;
 
 let IsTrue = false;
 
+let XWins = 0;
 
+
+let OWins = 0;
+
+GameLogic();
 
 function GameLogic(){
 
 
+document.querySelector(`.Restart-Button`).addEventListener(`click`,()=>{
 
-document.querySelector(`.option-selector`).addEventListener(`click`,()=>{
 
-document.querySelector(`.option-display`).innerHTML = `<button class="first-one" >${PlayerMove[0]}</button><button class="second-one">${PlayerMove[1]}</button>`
+    document.querySelector(`.First-player-name`).value = ``;
+    document.querySelector(`.Second-player-name`).value = ``;
 
-document.querySelector(`.first-one`).addEventListener(`click`,()=>{
+    document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
-    Accessibility();
+        EmptyDiv.innerHTML = ``;
+
+
+
+    })
+
+    XWins = 0;
+    OWins = 0;
+
+
 })
 
-})
-    
 
-}
+document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
 
+    if(document.querySelector(`.First-player-name`).value !== `` && document.querySelector(`.Second-player-name`).value !== ``){  
 
-function Accessibility(){
 
     let CompArray = ["play-div1","play-div2","play-div3","play-div4","play-div5","play-div6","play-div7",
         "play-div8","play-div9"
     ];
-    
-
-    let InputPlayer;
-
-    InputPlayer = `X`;
-
-    if(InputPlayer === `X`){
-
-        CompMove = `0`
-    }
 
     document.querySelectorAll(`.play-div`).forEach((button)=>{
 
         button.addEventListener(`click`,()=>{
 
-
+            if(document.querySelector(`.First-player-name`).value !== `` && document.querySelector(`.Second-player-name`).value !== ``){
             let PlayerId = button.dataset.playerId;
 
-            document.querySelector(`.${PlayerId}`).innerHTML = `X`;
+            if(InputPlayer === `X`) {
 
-            
-            reevulation()
+                if(document.querySelector(`.${PlayerId}`).innerHTML === ``){
+            document.querySelector(`.${PlayerId}`).innerHTML = InputPlayer;
+
+            reevulation(InputPlayer);
+
+            CompArray.forEach((element,index)=>{
+
+                if(PlayerId === element){
+
+                    CompArray.splice(index,1)
+
+
+                }
+
+
+            })
+        
+
+
+            if(IsTrue === false){
+            InputPlayer = `O`
+            }else if(IsTrue === true) {
+
+                IsTrue = false
+
+            }
+        }
+
+        }else if(InputPlayer === `O`){
+
+
+            if(document.querySelector(`.${PlayerId}`).innerHTML === ``){
+            document.querySelector(`.${PlayerId}`).innerHTML = InputPlayer;
+
+            reevulation(InputPlayer);
 
 
             CompArray.forEach((element,index)=>{
@@ -69,38 +104,23 @@ function Accessibility(){
 
 
             })
-
-            console.log(CompArray);
-
+            
             if(IsTrue === false){
 
+            InputPlayer = `X`
+            }else if(IsTrue === true) {
 
-                let CompValue = Math.floor(Math.random() * CompArray.length)
-                let CompPick = CompArray[CompValue]  
-    
-    
-                document.querySelector(`.${CompPick}`).innerHTML = `O`;
-    
-                CompArray.forEach((element,index)=>{
-    
-                    if(CompPick === element){
-    
-                        CompArray.splice(index,1)
-    
-    
-                    }
-    
-    
-    
-                })
-
-
-                reevulation();
-
-
-
+                IsTrue = false
 
             }
+        }
+        }
+    }else{
+
+        alert(`please Fill The name first`)
+
+
+    }
 
     })
 
@@ -108,27 +128,40 @@ function Accessibility(){
 
 })
 
+}else{
 
-
+    alert(`please Fill The name first`)
 
 
 }
 
 
-function reevulation(){
+
+
+})
+
+
+    
+
+}
+
+
+function reevulation(InputPlayer){
 
     let TheValues = []
        
-   document.querySelectorAll(`.play-div`).forEach((element,index)=>{
-   
+   document.querySelectorAll(`.play-div`).forEach((element)=>{
    
    TheValues.push(element.innerHTML)
    
    
    })
    
-     ConclusionLogic(TheValues)
+     ConclusionLogic(TheValues,InputPlayer)
+     
    
+     
+
    }
 
 
@@ -146,12 +179,16 @@ function reevulation(){
 
 
         })
-        Accessibility();
-    
+
+        XWins += 1;
+        document.querySelector(`.score-board-X`).innerText = XWins;
+
+        InputPlayer = `X`
+        
     }else if (TheValues[3] === TheValues[4] && TheValues[4] === TheValues[5] && TheValues[3] === `X`){
     
     
-        alert(`You Won`)
+        alert(`You Won`);
         IsTrue= true;
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
@@ -160,10 +197,16 @@ function reevulation(){
 
 
         })
+
+        XWins += 1;
+        document.querySelector(`.score-board-X`).innerText = XWins;
+
+
+        InputPlayer = `X`
     
     }else if(TheValues[6] === TheValues[7] && TheValues[7] === TheValues[8] && TheValues[6] === `X`){
     
-        alert(`You Won`)
+        alert(`You Won`);
         IsTrue= true;
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
@@ -172,19 +215,32 @@ function reevulation(){
 
 
         })
+
+        XWins += 1;
+        document.querySelector(`.score-board-X`).innerText = XWins;
+
+
+        InputPlayer = `X`
     
     
     }else if(TheValues[0] === TheValues[3] && TheValues[3] === TheValues[6] && TheValues[0] === `X`){
     
-    alert(`You Won`)
-    IsTrue= true;
-    document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
+        alert(`You Won`);
+        IsTrue= true;
+        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
-        EmptyDiv.innerHTML = ``;
+            EmptyDiv.innerHTML = ``;
 
 
 
-    })
+        })
+
+        XWins += 1;
+        document.querySelector(`.score-board-X`).innerText = XWins;
+
+
+
+        InputPlayer = `X`
 
     }else if(TheValues[1] === TheValues[4] && TheValues[4] === TheValues[7] && TheValues[1] === `X`){
     
@@ -197,6 +253,13 @@ function reevulation(){
 
 
         })
+
+        XWins += 1;
+        document.querySelector(`.score-board-X`).innerText = XWins;
+
+
+
+        InputPlayer = `X`
     
     
     }else if(TheValues[2] === TheValues[5] && TheValues[5] === TheValues[8] && TheValues[2] === `X`){
@@ -210,14 +273,19 @@ function reevulation(){
 
 
         })
+
+        XWins += 1;
+        document.querySelector(`.score-board-X`).innerText = XWins;
+
+
+
+        InputPlayer = `X`
     
     
     
-    }
-    
-    if(TheValues[0] === TheValues[1] && TheValues[1] === TheValues[2] && TheValues[0] === `O`){
-    
-        alert(`You Lost`)
+    }else if(TheValues[0] === TheValues[4] && TheValues[4] === TheValues[8] && TheValues[0] === `X`){
+
+        alert(`You Won`);
         IsTrue= true;
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
@@ -225,13 +293,63 @@ function reevulation(){
 
 
 
-        }) 
+        })
+
+        XWins += 1;
+        document.querySelector(`.score-board-X`).innerText = XWins;
+
+
+
+        InputPlayer = `X`
+
+
+    }else if(TheValues[2] === TheValues[4] && TheValues[4] === TheValues[6] && TheValues[2] === `X`){
+
+        alert(`You Won`);
+        IsTrue= true;
+        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
+
+            EmptyDiv.innerHTML = ``;
+
+
+
+        })
+
+        XWins += 1;
+        document.querySelector(`.score-board-X`).innerText = XWins;
+
+
+
+
+        InputPlayer = `X`
+
+
+    }
+    
+    if(TheValues[0] === TheValues[1] && TheValues[1] === TheValues[2] && TheValues[0] === `O`){
+    
+        alert(`You Lost`);
+        IsTrue= true;
+        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
+
+            EmptyDiv.innerHTML = ``;
+
+
+
+        })
+
+        OWins += 1;
+        document.querySelector(`.score-board-O`).innerText = OWins;
+
+
+
+        InputPlayer = `O`
     
     
     }else if (TheValues[3] === TheValues[4] && TheValues[4] === TheValues[5] && TheValues[3] === `O`){
     
     
-        alert(`You Lost`)
+        alert(`You Lost`);
         IsTrue= true;
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
@@ -240,11 +358,16 @@ function reevulation(){
 
 
         })
+        
+        OWins += 1;
+        document.querySelector(`.score-board-O`).innerText = OWins;
+    
+    
+        InputPlayer = `O`
     
     
     }else if(TheValues[6] === TheValues[7] && TheValues[7] === TheValues[8] && TheValues[6] === `O`){
-    
-        alert(`You Lost`)
+        alert(`You Lost`);
         IsTrue= true;
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
@@ -253,12 +376,18 @@ function reevulation(){
 
 
         })
+
+        OWins += 1;
+        document.querySelector(`.score-board-O`).innerText = OWins;
+
+
+        InputPlayer = `O`
     
     
     
     }else if(TheValues[0] === TheValues[3] && TheValues[3] === TheValues[6] && TheValues[0] === `O`){
     
-        alert(`You Lost`)
+        alert(`You Lost`);
         IsTrue= true;
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
@@ -267,10 +396,17 @@ function reevulation(){
 
 
         })
+
+        OWins += 1;
+        document.querySelector(`.score-board-O`).innerText = OWins;
+
+
+
+        InputPlayer = `O`
     
     }else if(TheValues[1] === TheValues[4] && TheValues[4] === TheValues[7] && TheValues[1] === `O`){
     
-        alert(`You Lost`)
+        alert(`You Lost`);
         IsTrue= true;
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
@@ -279,11 +415,16 @@ function reevulation(){
 
 
         })
+
+        OWins += 1;
+        document.querySelector(`.score-board-O`).innerText = OWins;
+
+        InputPlayer = `O`
     
     
     }else if(TheValues[2] === TheValues[5] && TheValues[5] === TheValues[8] && TheValues[2] === `O`){
     
-        alert(`You Lost`)
+        alert(`You Lost`);
         IsTrue= true;
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
@@ -292,14 +433,17 @@ function reevulation(){
 
 
         })
+        OWins += 1;
+        document.querySelector(`.score-board-O`).innerText = OWins;
+
+
+        InputPlayer = `O`
     
     
     
-    }
-    
-    if(TheValues[0] === TheValues[4] && TheValues[4] === TheValues[8] && TheValues[0] === `X`){
+    }else if(TheValues[0] === TheValues[4] && TheValues[4] === TheValues[8] && TheValues[0] === `O`){
 
-        alert(`You Won`)
+        alert(`You Lost`);
         IsTrue= true;
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
@@ -309,12 +453,16 @@ function reevulation(){
 
         })
 
+        OWins += 1;
+        document.querySelector(`.score-board-O`).innerText = OWins;
 
-    }
 
-    if(TheValues[2] === TheValues[4] && TheValues[4] === TheValues[6] && TheValues[2] === `X`){
+        InputPlayer = `O`
 
-        alert(`You Won`)
+
+    }else if(TheValues[2] === TheValues[4] && TheValues[4] === TheValues[6] && TheValues[2] === `O`){
+       
+        alert(`You Lost`);
         IsTrue= true;
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
@@ -324,13 +472,18 @@ function reevulation(){
 
         })
 
+        OWins += 1;
+        document.querySelector(`.score-board-O`).innerText = OWins;
+
+        InputPlayer = `O`
+
 
     }
 
-    if(TheValues[0] === TheValues[4] && TheValues[4] === TheValues[8] && TheValues[0] === `O`){
+    if(TheValues[0] !== `` && TheValues[1] !== `` && TheValues[2] !== `` && TheValues[3] !== `` && TheValues[4] 
+       !== `` && TheValues[5] !== `` && TheValues[6] !== `` && TheValues[7] !== `` && TheValues[8] !== `` 
+     ){
 
-        alert(`You Lost`)
-        IsTrue= true;
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
             EmptyDiv.innerHTML = ``;
@@ -340,22 +493,6 @@ function reevulation(){
         })
 
 
-    }
-
-    if(TheValues[2] === TheValues[4] && TheValues[4] === TheValues[6] && TheValues[2] === `O`){
-
-        alert(`You Lost`)
-        IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
-
-
-    }
-
+     }
 
 }

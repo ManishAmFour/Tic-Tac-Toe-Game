@@ -8,7 +8,21 @@
 </head>
 <body>
 
-    <button class="option-selector" > Choose Your option  </button>
+    <div>
+        Register Player Name
+        <div><input type="text" class="First-player-name" >X</div>
+        <div><input type="text" class="Second-player-name" >O</div>
+    </div>
+    
+    <button class="initiation-button" >
+        Start The Game 
+    </button>
+
+    <div>
+        X = <div class="score-board-X"></div>
+        O = <div class="score-board-O"></div>
+    </div>
+
     <div class="option-display"></div>
 
     <div class="play-div play-div1" data-player-id = "play-div1" ></div>
@@ -42,8 +56,10 @@
 
     </div>
 
+    <div class="result-display"></div>
+
     
-     
+     <button class="Restart-Button" >Restart-Button</button>
     
 
     <script src="function.js"></script>
