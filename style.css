@@ -31,14 +31,14 @@ display: inline-block;
 
 .Restart-Button{
 
-    display: none;
+    display: block;
 
 
 }
 
 .score-board{
 
-    display: none;
+    display: block;
 
 
 }

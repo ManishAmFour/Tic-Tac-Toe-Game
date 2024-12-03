@@ -11,43 +11,8 @@ let XWins = 0;
 
 let OWins = 0;
 
-document.querySelector(`.Restart-Button`).addEventListener(`click`,()=>{
+let LastClickDiv;
 
-    Restart();
-
-})
-
-
-function Restart(){
-
-
-    document.querySelector(`.First-player-name`).value = ``;
-    document.querySelector(`.Second-player-name`).value = ``;
-
-
-    document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-        EmptyDiv.innerHTML = ``;
-
-
-
-    })
-
-
-    XWins = 0;
-    OWins = 0;
-
-
-    document.querySelector(`.score-board-X`).innerText = ``;
-    document.querySelector(`.score-board-O`).innerText = ``;
-
-    document.querySelector(`.initiation-button`).classList.remove(`display-none`)
-
-
-
-
-
-}
 
 document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
 
@@ -59,11 +24,13 @@ document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
     GameLogic();
 
     document.querySelector(`.register-form`).classList.add(`display-none`);
-    document.querySelector(`.score-board`).classList.add(`display-block`);
+    document.querySelector(`.score-board`).classList.remove(`display-none`);
     document.querySelector(`.game-board-main`).classList.add(`display-block`);
+    document.querySelector(`.Restart-Button`).classList.remove(`display-none`);
+
     document.querySelectorAll(`.play-div`).forEach((Div)=>{
 
-        Div.classList.add(`display-block`)
+        Div.classList.add(`display-block`);
 
 
     })
@@ -77,6 +44,12 @@ document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
     }
     
 
+
+})
+
+document.querySelector(`.Restart-Button`).addEventListener(`click`,()=>{
+
+    Restart();
 
 })
 
@@ -100,8 +73,12 @@ function GameLogic(){
                 if(document.querySelector(`.${PlayerId}`).innerHTML === ``){
 
             document.querySelector(`.${PlayerId}`).innerHTML = InputPlayer;
+            LastClickDiv = document.querySelector(`.${PlayerId}`) ;
+    
+  
 
             reevulation(InputPlayer);
+
 
             CompArray.forEach((element,index)=>{
 
@@ -220,10 +197,14 @@ function reevulation(InputPlayer){
 
         })
 
+      console.log(document.querySelector(`.play-div3`).innerHTML)
+
+
         
         InputPlayer = `X`
         
-    }else if (TheValues[3] === TheValues[4] && TheValues[4] === TheValues[5] && TheValues[3] === `X`){
+    }
+    else if (TheValues[3] === TheValues[4] && TheValues[4] === TheValues[5] && TheValues[3] === `X`){
     
     
         alert(`You Won`);
@@ -532,5 +513,40 @@ function reevulation(InputPlayer){
 
 
      }
+
+}
+
+
+
+
+function Restart(){
+
+
+    document.querySelector(`.First-player-name`).value = ``;
+    document.querySelector(`.Second-player-name`).value = ``;
+
+    XWins = 0;
+    OWins = 0;
+
+
+    document.querySelector(`.score-board-X`).innerText = ``;
+    document.querySelector(`.score-board-O`).innerText = ``;
+
+    document.querySelector(`.initiation-button`).classList.remove(`display-none`)
+    document.querySelector(`.register-form`).classList.remove(`display-none`);
+    document.querySelector(`.game-board-main`).classList.remove(`display-block`);
+    document.querySelector(`.Restart-Button`).classList.add(`display-none`);
+    document.querySelector(`.score-board`).classList.add(`display-none`);
+
+
+    document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
+
+        EmptyDiv.innerHTML = ``;
+
+
+
+    })
+
+
 
 }
