@@ -1,16 +1,16 @@
 
-let InputPlayer = `X`;
-
-let IsTrue = false;
-
-let XWins = 0;
-
-let OWins = 0;
-
-let EmptyTheDiv = false;
-
-
 const initialization = (() => {
+
+
+    let InputPlayer = `X`;
+
+    let IsTrue = false;
+    
+    let XWins = 0;
+    
+    let OWins = 0;
+    
+    let EmptyTheDiv = false;
 
     document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
 
@@ -19,13 +19,142 @@ const initialization = (() => {
             let FirstPlayer = document.querySelector(`.First-player-name`).value;
             let SecondPlayer = document.querySelector(`.Second-player-name`).value;
     
-        GameLogic(FirstPlayer,SecondPlayer);
-    
+            function  GameLogic (FirstPlayer,SecondPlayer){
+
+                if(document.querySelector(`.First-player-name`).value !== `` && document.querySelector(`.Second-player-name`).value !== ``){  
+            
+                let CompArray = ["play-div1","play-div2","play-div3","play-div4","play-div5","play-div6","play-div7",
+                    "play-div8","play-div9"];
+            
+                document.querySelectorAll(`.play-div`).forEach((button)=>{
+            
+                    button.addEventListener(`click`,()=>{
+            
+                        if(document.querySelector(`.First-player-name`).value !== `` && document.querySelector(`.Second-player-name`).value !== ``){
+                        let PlayerId = button.dataset.playerId;
+            
+                        if(InputPlayer === `X`) {
+            
+                        if(document.querySelector(`.${PlayerId}`).innerHTML === ``){
+            
+            console.log(FirstPlayer)
+            
+                        document.querySelector(`.${PlayerId}`).innerHTML = InputPlayer;
+                            
+                        reevulation(InputPlayer,FirstPlayer,SecondPlayer);
+            
+                        if(EmptyTheDiv === true){
+            
+                            document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
+            
+                                EmptyDiv.innerHTML = ``;
+                
+                            })
+                               
+                            EmptyTheDiv = false;
+                           
+            
+            
+            
+                        }
+            
+            
+                        CompArray.forEach((element,index)=>{
+            
+                            if(PlayerId === element){
+            
+                                CompArray.splice(index,1)
+            
+            
+                            }
+            
+            
+                        })
+            
+                    
+            
+            
+                        if(IsTrue === false){
+                        InputPlayer = `O`
+                        }else if(IsTrue === true) {
+            
+                            IsTrue = false
+            
+                        }
+            
+                    }
+            
+                    }else if(InputPlayer === `O`){
+            
+            
+                        if(document.querySelector(`.${PlayerId}`).innerHTML === ``){
+            
+                            document.querySelector(`.${PlayerId}`).innerHTML = InputPlayer;
+            
+                        reevulation(InputPlayer,FirstPlayer,SecondPlayer);
+            
+            
+                        if(EmptyTheDiv === true){
+            
+                            document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
+            
+                                EmptyDiv.innerHTML = ``;
+                
+                            })
+                               
+                            EmptyTheDiv = false;
+                           
+            
+            
+            
+                        }
+            
+            
+            
+                        CompArray.forEach((element,index)=>{
+            
+                            if(PlayerId === element){
+            
+                                CompArray.splice(index,1)
+            
+            
+                            }
+            
+            
+                        })
+                        
+                        if(IsTrue === false){
+            
+                        InputPlayer = `X`
+            
+                        }else if(IsTrue === true) {
+            
+                            IsTrue = false
+            
+                        }
+                    }
+                    }
+                }else{
+            
+                    alert(`please Fill The name first`)
+            
+            
+                }
+            
+                })
+            
+            
+            
+            })
+            
+            }
+            
+            }
+            
+            GameLogic(FirstPlayer,SecondPlayer)
+
         document.querySelector(`.score-board-X`).innerText =  `${FirstPlayer}:0`
         document.querySelector(`.score-board-O`).innerText = `${SecondPlayer}:0`
-    
-    
-    
     
         document.querySelector(`.register-form`).classList.add(`display-none`);
         document.querySelector(`.score-board`).classList.remove(`display-none`);
@@ -50,159 +179,20 @@ const initialization = (() => {
     
     
     })
-
-
-
-})()
-
-
-
-const RestartButton = (()=>{
-
-    document.querySelector(`.Restart-Button`).addEventListener(`click`,()=>{
-
-        Restart();
     
-    })
+    const RestartButton = (()=>{
+
+        document.querySelector(`.Restart-Button`).addEventListener(`click`,()=>{
     
-
-
-})()
-
-
-
-function GameLogic(FirstPlayer,SecondPlayer){
-
-    if(document.querySelector(`.First-player-name`).value !== `` && document.querySelector(`.Second-player-name`).value !== ``){  
-
-    let CompArray = ["play-div1","play-div2","play-div3","play-div4","play-div5","play-div6","play-div7",
-        "play-div8","play-div9"];
-
-    document.querySelectorAll(`.play-div`).forEach((button)=>{
-
-        button.addEventListener(`click`,()=>{
-
-            if(document.querySelector(`.First-player-name`).value !== `` && document.querySelector(`.Second-player-name`).value !== ``){
-            let PlayerId = button.dataset.playerId;
-
-            if(InputPlayer === `X`) {
-
-            if(document.querySelector(`.${PlayerId}`).innerHTML === ``){
-
-
-
-            document.querySelector(`.${PlayerId}`).innerHTML = InputPlayer;
-                
-            reevulation(InputPlayer,FirstPlayer,SecondPlayer);
-
-            if(EmptyTheDiv === true){
-
-                document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-                    EmptyDiv.innerHTML = ``;
-    
-                })
-                   
-                EmptyTheDiv = false;
-               
-
-
-
-            }
-
-
-            CompArray.forEach((element,index)=>{
-
-                if(PlayerId === element){
-
-                    CompArray.splice(index,1)
-
-
-                }
-
-
-            })
-
+            Restart();
         
-
-
-            if(IsTrue === false){
-            InputPlayer = `O`
-            }else if(IsTrue === true) {
-
-                IsTrue = false
-
-            }
-
-        }
-
-        }else if(InputPlayer === `O`){
-
-
-            if(document.querySelector(`.${PlayerId}`).innerHTML === ``){
-
-                document.querySelector(`.${PlayerId}`).innerHTML = InputPlayer;
-
-            reevulation(InputPlayer,FirstPlayer,SecondPlayer);
-
-
-            if(EmptyTheDiv === true){
-
-                document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-                    EmptyDiv.innerHTML = ``;
+        })
+        
     
-                })
-                   
-                EmptyTheDiv = false;
-               
-
-
-
-            }
-
-
-
-            CompArray.forEach((element,index)=>{
-
-                if(PlayerId === element){
-
-                    CompArray.splice(index,1)
-
-
-                }
-
-
-            })
-            
-            if(IsTrue === false){
-
-            InputPlayer = `X`
-
-            }else if(IsTrue === true) {
-
-                IsTrue = false
-
-            }
-        }
-        }
-    }else{
-
-        alert(`please Fill The name first`)
-
-
-    }
-
-    })
-
-
-
-})
-
-}
-
-}
-function reevulation(InputPlayer,FirstPlayer,SecondPlayer){
+    
+    })()
+    
+    function reevulation(InputPlayer,FirstPlayer,SecondPlayer){
 
     let TheValues = []
        
@@ -347,6 +337,7 @@ function reevulation(InputPlayer,FirstPlayer,SecondPlayer){
 
 
     }
+ 
     
     if(TheValues[0] === TheValues[1] && TheValues[1] === TheValues[2] && TheValues[0] === `O`){
     
@@ -457,7 +448,7 @@ function reevulation(InputPlayer,FirstPlayer,SecondPlayer){
 
     }
 
-    if(TheValues[0] !== `` && TheValues[1] !== `` && TheValues[2] !== `` && TheValues[3] !== `` && TheValues[4] 
+   else if(TheValues[0] !== `` && TheValues[1] !== `` && TheValues[2] !== `` && TheValues[3] !== `` && TheValues[4] 
        !== `` && TheValues[5] !== `` && TheValues[6] !== `` && TheValues[7] !== `` && TheValues[8] !== `` 
      ){
 
@@ -476,15 +467,24 @@ function reevulation(InputPlayer,FirstPlayer,SecondPlayer){
 
 }
 
-
-
-
 function Restart(){
 
 
-window.location.reload();
+    window.location.reload();
+    
+        
+    
+    
+    }
 
+
+   
     
 
 
-}
+})()
+
+
+
+
+
