@@ -1,8 +1,4 @@
 
-let PlayerMove = [`X`,`O`]
-
-let GameBoard = [];
-
 let InputPlayer = `X`;
 
 let IsTrue = false;
@@ -13,57 +9,66 @@ let OWins = 0;
 
 let EmptyTheDiv = false;
 
-let GameIsRestarted = false;
 
-let LastClickDiv;
+const initialization = (() => {
 
+    document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
 
-
-
-document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
-
-    if(document.querySelector(`.First-player-name`).value !== `` && document.querySelector(`.Second-player-name`).value !== ``){
-
-        let FirstPlayer = document.querySelector(`.First-player-name`).value;
-        let SecondPlayer = document.querySelector(`.Second-player-name`).value;
-
-    GameLogic(FirstPlayer,SecondPlayer);
-
-    document.querySelector(`.score-board-X`).innerText =  `${FirstPlayer}:0`
-    document.querySelector(`.score-board-O`).innerText = `${SecondPlayer}:0`
-
-
-
-
-    document.querySelector(`.register-form`).classList.add(`display-none`);
-    document.querySelector(`.score-board`).classList.remove(`display-none`);
-    document.querySelector(`.game-board-main`).classList.add(`display-block`);
-    document.querySelector(`.Restart-Button`).classList.remove(`display-none`);
-
-    document.querySelectorAll(`.play-div`).forEach((Div)=>{
-
-        Div.classList.add(`display-block`);
-
-
+        if(document.querySelector(`.First-player-name`).value !== `` && document.querySelector(`.Second-player-name`).value !== ``){
+    
+            let FirstPlayer = document.querySelector(`.First-player-name`).value;
+            let SecondPlayer = document.querySelector(`.Second-player-name`).value;
+    
+        GameLogic(FirstPlayer,SecondPlayer);
+    
+        document.querySelector(`.score-board-X`).innerText =  `${FirstPlayer}:0`
+        document.querySelector(`.score-board-O`).innerText = `${SecondPlayer}:0`
+    
+    
+    
+    
+        document.querySelector(`.register-form`).classList.add(`display-none`);
+        document.querySelector(`.score-board`).classList.remove(`display-none`);
+        document.querySelector(`.game-board-main`).classList.add(`display-block`);
+        document.querySelector(`.Restart-Button`).classList.remove(`display-none`);
+    
+        document.querySelectorAll(`.play-div`).forEach((Div)=>{
+    
+            Div.classList.add(`display-block`);
+    
+    
+        })
+    
+    
+    
+        }else{
+    
+            alert(`please Fill The entries first`)
+    
+        }
+        
+    
+    
     })
 
 
 
-    }else{
+})()
 
-        alert(`please Fill The entries first`)
 
-    }
+
+const RestartButton = (()=>{
+
+    document.querySelector(`.Restart-Button`).addEventListener(`click`,()=>{
+
+        Restart();
+    
+    })
     
 
 
-})
+})()
 
-document.querySelector(`.Restart-Button`).addEventListener(`click`,()=>{
-
-    Restart();
-
-})
 
 
 function GameLogic(FirstPlayer,SecondPlayer){
