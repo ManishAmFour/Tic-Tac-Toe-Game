@@ -1,7 +1,6 @@
 
 const initialization = (() => {
 
-
     let InputPlayer = `X`;
 
     let IsTrue = false;
@@ -222,10 +221,6 @@ const initialization = (() => {
         IsTrue= true;
         XWins += 1;
         document.querySelector(`.score-board-X`).innerText = `${FirstPlayer}:${XWins}`;
-
-        
-
-
         
         InputPlayer = `X`
         
@@ -450,7 +445,9 @@ const initialization = (() => {
 
    else if(TheValues[0] !== `` && TheValues[1] !== `` && TheValues[2] !== `` && TheValues[3] !== `` && TheValues[4] 
        !== `` && TheValues[5] !== `` && TheValues[6] !== `` && TheValues[7] !== `` && TheValues[8] !== `` 
-     ){
+    && IsTrue === false 
+    
+    ){
 
         alert(`Game Draw`)
 
