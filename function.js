@@ -11,7 +11,13 @@ let XWins = 0;
 
 let OWins = 0;
 
+let EmptyTheDiv = false;
+
+let GameIsRestarted = false;
+
 let LastClickDiv;
+
+
 
 
 document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
@@ -21,7 +27,13 @@ document.querySelector(`.initiation-button`).addEventListener(`click`,()=>{
         let FirstPlayer = document.querySelector(`.First-player-name`).value;
         let SecondPlayer = document.querySelector(`.Second-player-name`).value;
 
-    GameLogic();
+    GameLogic(FirstPlayer,SecondPlayer);
+
+    document.querySelector(`.score-board-X`).innerText =  `${FirstPlayer}:0`
+    document.querySelector(`.score-board-O`).innerText = `${SecondPlayer}:0`
+
+
+
 
     document.querySelector(`.register-form`).classList.add(`display-none`);
     document.querySelector(`.score-board`).classList.remove(`display-none`);
@@ -54,7 +66,7 @@ document.querySelector(`.Restart-Button`).addEventListener(`click`,()=>{
 })
 
 
-function GameLogic(){
+function GameLogic(FirstPlayer,SecondPlayer){
 
     if(document.querySelector(`.First-player-name`).value !== `` && document.querySelector(`.Second-player-name`).value !== ``){  
 
@@ -70,14 +82,28 @@ function GameLogic(){
 
             if(InputPlayer === `X`) {
 
-                if(document.querySelector(`.${PlayerId}`).innerHTML === ``){
+            if(document.querySelector(`.${PlayerId}`).innerHTML === ``){
+
+
 
             document.querySelector(`.${PlayerId}`).innerHTML = InputPlayer;
-            LastClickDiv = document.querySelector(`.${PlayerId}`) ;
-    
-  
+                
+            reevulation(InputPlayer,FirstPlayer,SecondPlayer);
 
-            reevulation(InputPlayer);
+            if(EmptyTheDiv === true){
+
+                document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
+
+                    EmptyDiv.innerHTML = ``;
+    
+                })
+                   
+                EmptyTheDiv = false;
+               
+
+
+
+            }
 
 
             CompArray.forEach((element,index)=>{
@@ -91,6 +117,7 @@ function GameLogic(){
 
 
             })
+
         
 
 
@@ -101,15 +128,34 @@ function GameLogic(){
                 IsTrue = false
 
             }
+
         }
 
         }else if(InputPlayer === `O`){
 
 
             if(document.querySelector(`.${PlayerId}`).innerHTML === ``){
-            document.querySelector(`.${PlayerId}`).innerHTML = InputPlayer;
 
-            reevulation(InputPlayer);
+                document.querySelector(`.${PlayerId}`).innerHTML = InputPlayer;
+
+            reevulation(InputPlayer,FirstPlayer,SecondPlayer);
+
+
+            if(EmptyTheDiv === true){
+
+                document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
+
+                    EmptyDiv.innerHTML = ``;
+    
+                })
+                   
+                EmptyTheDiv = false;
+               
+
+
+
+            }
+
 
 
             CompArray.forEach((element,index)=>{
@@ -150,18 +196,8 @@ function GameLogic(){
 
 }
 
-
-
-
-
-
 }
-    
-
-
-
-
-function reevulation(InputPlayer){
+function reevulation(InputPlayer,FirstPlayer,SecondPlayer){
 
     let TheValues = []
        
@@ -172,7 +208,7 @@ function reevulation(InputPlayer){
    
    })
    
-     ConclusionLogic(TheValues,InputPlayer)
+     ConclusionLogic(TheValues,InputPlayer,FirstPlayer,SecondPlayer)
      
    
      
@@ -181,23 +217,18 @@ function reevulation(InputPlayer){
 
 
 
-   function ConclusionLogic(TheValues){
+   function ConclusionLogic(TheValues,InputPlayer,FirstPlayer,SecondPlayer){
 
     if(TheValues[0] === TheValues[1] && TheValues[1] === TheValues[2] && TheValues[0] === `X`){
 
-        alert(`You Won`);
+        alert(`X Won`);
+        EmptyTheDiv = true;
+
         IsTrue= true;
         XWins += 1;
-        document.querySelector(`.score-board-X`).innerText = XWins;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
+        document.querySelector(`.score-board-X`).innerText = `${FirstPlayer}:${XWins}`;
 
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
-
-      console.log(document.querySelector(`.play-div3`).innerHTML)
+        
 
 
         
@@ -207,36 +238,27 @@ function reevulation(InputPlayer){
     else if (TheValues[3] === TheValues[4] && TheValues[4] === TheValues[5] && TheValues[3] === `X`){
     
     
-        alert(`You Won`);
+        alert(`X Won`);
+        EmptyTheDiv = true;
+        
         IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
+       
 
         XWins += 1;
-        document.querySelector(`.score-board-X`).innerText = XWins;
+        document.querySelector(`.score-board-X`).innerText = `${FirstPlayer}:${XWins}`;
 
 
         InputPlayer = `X`
     
     }else if(TheValues[6] === TheValues[7] && TheValues[7] === TheValues[8] && TheValues[6] === `X`){
     
-        alert(`You Won`);
+        alert(`X Won`);
+        EmptyTheDiv = true;
         IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
+        
 
         XWins += 1;
-        document.querySelector(`.score-board-X`).innerText = XWins;
+        document.querySelector(`.score-board-X`).innerText = `${FirstPlayer}:${XWins}`;
 
 
         InputPlayer = `X`
@@ -244,18 +266,13 @@ function reevulation(InputPlayer){
     
     }else if(TheValues[0] === TheValues[3] && TheValues[3] === TheValues[6] && TheValues[0] === `X`){
     
-        alert(`You Won`);
+        alert(`X Won`);
+        EmptyTheDiv = true;
         IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
+     
 
         XWins += 1;
-        document.querySelector(`.score-board-X`).innerText = XWins;
+        document.querySelector(`.score-board-X`).innerText = `${FirstPlayer}:${XWins}`;
 
 
 
@@ -263,18 +280,14 @@ function reevulation(InputPlayer){
 
     }else if(TheValues[1] === TheValues[4] && TheValues[4] === TheValues[7] && TheValues[1] === `X`){
     
-        alert(`You Won`);
+        alert(`X Won`);
+        EmptyTheDiv = true;
         IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
-
+      
         XWins += 1;
-        document.querySelector(`.score-board-X`).innerText = XWins;
+
+
+        document.querySelector(`.score-board-X`).innerText = `${FirstPlayer}:${XWins}`;
 
 
 
@@ -283,18 +296,12 @@ function reevulation(InputPlayer){
     
     }else if(TheValues[2] === TheValues[5] && TheValues[5] === TheValues[8] && TheValues[2] === `X`){
     
-        alert(`You Won`);
+        alert(`X Won`);
+        EmptyTheDiv = true;
         IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
-
+     
         XWins += 1;
-        document.querySelector(`.score-board-X`).innerText = XWins;
+        document.querySelector(`.score-board-X`).innerText = `${FirstPlayer}:${XWins}`;
 
 
 
@@ -304,18 +311,13 @@ function reevulation(InputPlayer){
     
     }else if(TheValues[0] === TheValues[4] && TheValues[4] === TheValues[8] && TheValues[0] === `X`){
 
-        alert(`You Won`);
+        alert(`X Won`);
+        EmptyTheDiv = true;
         IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
+     
 
         XWins += 1;
-        document.querySelector(`.score-board-X`).innerText = XWins;
+        document.querySelector(`.score-board-X`).innerText = `${FirstPlayer}:${XWins}`;
 
 
 
@@ -324,18 +326,14 @@ function reevulation(InputPlayer){
 
     }else if(TheValues[2] === TheValues[4] && TheValues[4] === TheValues[6] && TheValues[2] === `X`){
 
-        alert(`You Won`);
+        alert(`X Won`);
+        EmptyTheDiv = true;
         IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
+       
 
         XWins += 1;
-        document.querySelector(`.score-board-X`).innerText = XWins;
+
+        document.querySelector(`.score-board-X`).innerText = `${FirstPlayer}:${XWins}`;
 
 
 
@@ -347,18 +345,13 @@ function reevulation(InputPlayer){
     
     if(TheValues[0] === TheValues[1] && TheValues[1] === TheValues[2] && TheValues[0] === `O`){
     
-        alert(`You Lost`);
+        alert(`O Won`);
+        EmptyTheDiv = true;
         IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
+        
 
         OWins += 1;
-        document.querySelector(`.score-board-O`).innerText = OWins;
+        document.querySelector(`.score-board-O`).innerText = `${SecondPlayer}:${OWins}`;
 
 
 
@@ -368,36 +361,25 @@ function reevulation(InputPlayer){
     }else if (TheValues[3] === TheValues[4] && TheValues[4] === TheValues[5] && TheValues[3] === `O`){
     
     
-        alert(`You Lost`);
-        IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
-        
+        alert(`O Won`);
+        EmptyTheDiv = true;
+                IsTrue= true;
+      
         OWins += 1;
-        document.querySelector(`.score-board-O`).innerText = OWins;
+        document.querySelector(`.score-board-O`).innerText = `${SecondPlayer}:${OWins}`;
     
     
         InputPlayer = `O`
     
     
     }else if(TheValues[6] === TheValues[7] && TheValues[7] === TheValues[8] && TheValues[6] === `O`){
-        alert(`You Lost`);
-        IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
+        alert(`O Won`);
+        EmptyTheDiv = true;
+                IsTrue= true;
+       
 
         OWins += 1;
-        document.querySelector(`.score-board-O`).innerText = OWins;
+        document.querySelector(`.score-board-O`).innerText = `${SecondPlayer}:${OWins}`;
 
 
         InputPlayer = `O`
@@ -406,18 +388,12 @@ function reevulation(InputPlayer){
     
     }else if(TheValues[0] === TheValues[3] && TheValues[3] === TheValues[6] && TheValues[0] === `O`){
     
-        alert(`You Lost`);
-        IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
+        alert(`O Won`);
+        EmptyTheDiv = true;        IsTrue= true;
+        
 
         OWins += 1;
-        document.querySelector(`.score-board-O`).innerText = OWins;
+        document.querySelector(`.score-board-O`).innerText = `${SecondPlayer}:${OWins}`;
 
 
 
@@ -425,35 +401,22 @@ function reevulation(InputPlayer){
     
     }else if(TheValues[1] === TheValues[4] && TheValues[4] === TheValues[7] && TheValues[1] === `O`){
     
-        alert(`You Lost`);
-        IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
+        alert(`O Won`);
+        EmptyTheDiv = true;        IsTrue= true;
+        
 
         OWins += 1;
-        document.querySelector(`.score-board-O`).innerText = OWins;
+        document.querySelector(`.score-board-O`).innerText = `${SecondPlayer}:${OWins}`;
 
         InputPlayer = `O`
     
     
     }else if(TheValues[2] === TheValues[5] && TheValues[5] === TheValues[8] && TheValues[2] === `O`){
     
-        alert(`You Lost`);
-        IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
+        alert(`O Won`);
+        EmptyTheDiv = true;     
         OWins += 1;
-        document.querySelector(`.score-board-O`).innerText = OWins;
+        document.querySelector(`.score-board-O`).innerText = `${SecondPlayer}:${OWins}`;
 
 
         InputPlayer = `O`
@@ -462,18 +425,12 @@ function reevulation(InputPlayer){
     
     }else if(TheValues[0] === TheValues[4] && TheValues[4] === TheValues[8] && TheValues[0] === `O`){
 
-        alert(`You Lost`);
-        IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
+        alert(`O Won`);
+        EmptyTheDiv = true;        IsTrue= true;
+     
 
         OWins += 1;
-        document.querySelector(`.score-board-O`).innerText = OWins;
+        document.querySelector(`.score-board-O`).innerText = `${SecondPlayer}:${OWins}`;
 
 
         InputPlayer = `O`
@@ -481,18 +438,14 @@ function reevulation(InputPlayer){
 
     }else if(TheValues[2] === TheValues[4] && TheValues[4] === TheValues[6] && TheValues[2] === `O`){
        
-        alert(`You Lost`);
+        alert(`O Won`);
+        EmptyTheDiv = true;       
+        
         IsTrue= true;
-        document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-            EmptyDiv.innerHTML = ``;
-
-
-
-        })
+   
 
         OWins += 1;
-        document.querySelector(`.score-board-O`).innerText = OWins;
+        document.querySelector(`.score-board-O`).innerText = `${SecondPlayer}:${OWins}`;
 
         InputPlayer = `O`
 
@@ -502,6 +455,8 @@ function reevulation(InputPlayer){
     if(TheValues[0] !== `` && TheValues[1] !== `` && TheValues[2] !== `` && TheValues[3] !== `` && TheValues[4] 
        !== `` && TheValues[5] !== `` && TheValues[6] !== `` && TheValues[7] !== `` && TheValues[8] !== `` 
      ){
+
+        alert(`Game Draw`)
 
         document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
 
@@ -522,31 +477,9 @@ function reevulation(InputPlayer){
 function Restart(){
 
 
-    document.querySelector(`.First-player-name`).value = ``;
-    document.querySelector(`.Second-player-name`).value = ``;
+window.location.reload();
 
-    XWins = 0;
-    OWins = 0;
-
-
-    document.querySelector(`.score-board-X`).innerText = ``;
-    document.querySelector(`.score-board-O`).innerText = ``;
-
-    document.querySelector(`.initiation-button`).classList.remove(`display-none`)
-    document.querySelector(`.register-form`).classList.remove(`display-none`);
-    document.querySelector(`.game-board-main`).classList.remove(`display-block`);
-    document.querySelector(`.Restart-Button`).classList.add(`display-none`);
-    document.querySelector(`.score-board`).classList.add(`display-none`);
-
-
-    document.querySelectorAll(`.play-div`).forEach((EmptyDiv)=>{
-
-        EmptyDiv.innerHTML = ``;
-
-
-
-    })
-
+    
 
 
 }
