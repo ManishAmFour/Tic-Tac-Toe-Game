@@ -157,15 +157,23 @@ const initialization = (() => {
     
         document.querySelector(`.register-form`).classList.add(`display-none`);
         document.querySelector(`.score-board`).classList.remove(`display-none`);
-        document.querySelector(`.game-board-main`).classList.add(`display-block`);
         document.querySelector(`.Restart-Button`).classList.remove(`display-none`);
     
-        document.querySelectorAll(`.play-div`).forEach((Div)=>{
-    
-            Div.classList.add(`display-block`);
-    
-    
-        })
+
+
+        document.querySelector(`.bigger-play-div`).classList.add(`display-block`)
+            
+
+            document.querySelector(`.play-div1`).classList.add(`display-block`)
+            document.querySelector(`.play-div2`).classList.add(`display-block`)
+            document.querySelector(`.play-div3`).classList.add(`display-block`)
+            document.querySelector(`.play-div4`).classList.add(`display-block`)
+            document.querySelector(`.play-div5`).classList.add(`display-block`)
+            document.querySelector(`.play-div6`).classList.add(`display-block`)
+            document.querySelector(`.play-div7`).classList.add(`display-block`)
+            document.querySelector(`.play-div8`).classList.add(`display-block`)
+            document.querySelector(`.play-div9`).classList.add(`display-block`)
+        
     
     
     

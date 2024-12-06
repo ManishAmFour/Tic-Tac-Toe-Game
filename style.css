@@ -1,13 +1,13 @@
-.game-board-main{
-
-    position: fixed;
-    left: 100px;
-    top: 100px;    
-    height: 300px;
-    width: 300px;
-    display: none;
 
 
+.bigger-play-div{
+
+display: none;
+position: fixed;
+height: 1000px;
+width: 1000px;
+left: 400px;
+top: 0px;
 }
 
 
@@ -89,7 +89,8 @@ animation: RegisterAnimation 4s;
 
 .play-div{
 
-    display: none;
+    background-color: grey;
+    
 
 }
 
@@ -108,76 +109,89 @@ display: inline-block;
 
 .Restart-Button{
 
-    display: block;
+position: fixed;
+left: 1430px;
+top: 280px;
+font-size: 50px;
+
+}
+
+
+.Restart-Button:hover{
+
+    cursor: pointer;
 
 
 }
 
 .score-board{
 
-    display: block;
-
-
-}
-
-
-.game-board{
-
-    position: absolute;
-    height: 300px;
-    left: 100px;
-    width: 10px;
-    background-color: black;
-
-}
-
-
-.game-board2{
-
-    position: absolute;
-    left: 200px;
-    height: 300px;
-    width: 10px;
-    background-color: black;
-
-
-}
-
-
-.game-board4{
-
-    position: absolute;
-    height: 10px;
-    width: 300px;
-    top: 100px;
-    background-color: black;
-
-
-}
-
-.game-board5{
-
-    position: absolute;
-    height: 10px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 150px;
     top: 200px;
-    width: 300px;
-    background-color: black;
-
-
+    border-style: solid;
+    height: 200px;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
 
 }
+
+
+
 
 .play-div{
 
-    height: 90px;
-    width: 90px;
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 200px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+
+.play-div:hover{
+
+    cursor: pointer;
+    animation: divanimation 2s; 
+
+
 
 }
+
+@keyframes divanimation {
+    
+0%{
+
+    opacity: 0;
+
+
+}
+
+100%{
+
+opacity: 1;
+
+
+}
+
+
+
+
+}
+
+
 .play-div1{
 
-    position: fixed;
-        left: 110px;
-        top: 110px;
+    position: absolute;
+        
     z-index: 100;
 
 }
@@ -192,10 +206,7 @@ display: inline-block;
 
 
 .play-div2{
-
-    position: fixed;
-    left: 210px;
-    top: 110px;
+    left: 350px;
     z-index: 100;
 
 }
@@ -204,9 +215,7 @@ display: inline-block;
 
 .play-div3{
 
-    position: fixed;
-    left: 310px;
-    top: 110px;
+    right: 0px;
     z-index: 100;
 
 
@@ -216,9 +225,7 @@ display: inline-block;
 
 .play-div4{
 
-    position: fixed;
-    left: 110px;
-    top: 210px;
+    top: 350px;
     z-index: 100;
 
 }
@@ -227,9 +234,8 @@ display: inline-block;
 
 
     
-        position: fixed;
-        left: 210px;
-        top: 210px;
+    left: 350px;
+    top: 350px;
         z-index: 100;
 
     
@@ -239,9 +245,8 @@ display: inline-block;
 
 .play-div6{
 
-    position: fixed;
-    left: 310px;
-    top: 210px;
+    right: 0px;
+    top: 350px;
     z-index: 100;
 
 
@@ -249,9 +254,7 @@ display: inline-block;
 
 .play-div7{
 
-    position: fixed;
-    left: 110px;
-    top: 310px;
+    bottom: 0px;
     z-index: 100;
 
 }
@@ -259,9 +262,8 @@ display: inline-block;
 
 .play-div8{
 
-    position: fixed;
-    left: 210px;
-    top: 310px;
+    left: 350px;
+    bottom: 0px;
     z-index: 100;
 
 
@@ -269,14 +271,10 @@ display: inline-block;
 
 .play-div9{
 
-    position: fixed;
-    left: 310px;
-    top: 310px;
+right: 0px;    bottom: 0px;
     z-index: 100;
 
 }
-
-
 
 
 
